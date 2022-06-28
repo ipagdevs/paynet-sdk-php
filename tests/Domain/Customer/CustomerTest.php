@@ -17,7 +17,7 @@ class CustomerTest extends TestCase
         $customer->setEmail('test@mail.com');
         $customer->setIp('127.0.0.1');
         $customer->setPhone('(11) 2222-3333');
-        $customer->setAddress('Rua do Teste,123,Centro,,Presidente Prudente,SP,19060-560');
+        $customer->setAddressFromString('Rua do Teste,123,Centro,,Presidente Prudente,SP,19060-560');
 
         return $customer;
     }
@@ -117,6 +117,6 @@ class CustomerTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $customer = $this->initializeCustomer();
-        $customer->setAddress('Rua do Teste,123,Centro,,Presidente Prudente,SP,123');
+        $customer->setAddressFromString('Rua do Teste,123,Centro,,Presidente Prudente,SP,123');
     }
 }
