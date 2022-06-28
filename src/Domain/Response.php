@@ -27,7 +27,7 @@ class Response implements \JsonSerializable
     /**
      * @param array $payload
      *
-     * @return Token
+     * @return self
      */
     public function __construct(
         string $description,
