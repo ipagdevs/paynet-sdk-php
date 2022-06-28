@@ -21,6 +21,6 @@
     "require": {
         "jhernandes/person": "^1.0",
         "jhernandes/brazilian-address": "^1.0",
-        "guzzlehttp/guzzle": "^7.4"
+        "guzzlehttp/guzzle": "^7.0"
     }
 }
