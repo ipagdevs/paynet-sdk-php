@@ -44,7 +44,12 @@ class Customer implements \JsonSerializable
         $this->ip = Ip::fromString($ip);
     }
 
-    public function setAddress(string $address): void
+    public function setAddress(Address $address): void
+    {
+        $this->address = $address;
+    }
+
+    public function setAddressFromString(string $address): void
     {
         $this->address = Address::fromString($address);
     }
