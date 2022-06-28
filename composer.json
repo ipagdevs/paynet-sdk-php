@@ -1,0 +1,26 @@
+{
+    "name": "ipagdevs/paynet-sdk-php",
+    "description": "PHP SDK for PayNet",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Paynet\\": "src/",
+            "Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Delgado",
+            "email": "jonathan@ipag.com.br"
+        }
+    ],
+    "require": {
+        "jhernandes/person": "^1.0",
+        "jhernandes/brazilian-address": "^1.0",
+        "guzzlehttp/guzzle": "^7.4"
+    }
+}
