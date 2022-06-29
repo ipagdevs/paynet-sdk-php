@@ -6,7 +6,7 @@ namespace Paynet\Domain;
 
 use GuzzleHttp\Psr7\Response;
 
-class Token
+class Login
 {
     const SUCCESS = 'success';
 
@@ -17,7 +17,7 @@ class Token
     /**
      * @param array $payload
      *
-     * @return Token
+     * @return Login
      */
     public function __construct(string $apiKey, string $status)
     {
@@ -51,7 +51,7 @@ class Token
         return $this->apiKey;
     }
 
-    public function isValidToken()
+    public function isValidLogin()
     {
         return $this->status == self::SUCCESS;
     }

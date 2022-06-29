@@ -3,7 +3,7 @@
 namespace Paynet\Application;
 
 use GuzzleHttp\Client;
-use Paynet\Domain\Token;
+use Paynet\Domain\Login;
 use GuzzleHttp\Psr7\Response;
 
 class PaynetService
@@ -37,10 +37,10 @@ class PaynetService
         $url = '/login';
         $response = $this->request($url, 'AUTH');
 
-        $tokenResponse = Token::createFromResponse($response);
-        $this->token = $tokenResponse->getApiKey();
+        $loginResponse = Login::createFromResponse($response);
+        $this->token = $loginResponse->getApiKey();
 
-        return $tokenResponse;
+        return $loginResponse;
     }
 
     protected function headers()
