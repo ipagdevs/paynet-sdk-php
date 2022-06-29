@@ -16,28 +16,28 @@ class TransactionService
         return Request::defaultHeaders();
     }
 
-    public function authorize(Request $api, Transaction $payload)
+    public static function authorize(Request $api, Transaction $payload)
     {
         $response = $api->post('/financial', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function capture(Request $api, Operation $payload)
+    public static function capture(Request $api, Operation $payload)
     {
         $response = $api->post('/capture', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function cancel(Request $api, Operation $payload)
+    public static function cancel(Request $api, Operation $payload)
     {
         $response = $api->post('/cancel', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function consult(Request $api, string $orderNumber)
+    public static function consult(Request $api, string $orderNumber)
     {
         $response = $api->post('/getTransaction', ['orderNumber' => $orderNumber], self::headers());
 

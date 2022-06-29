@@ -17,7 +17,7 @@ class LoginService
         ];
     }
 
-    public function login(Request $api, Credentials $credentials)
+    public static function login(Request $api, Credentials $credentials)
     {
         $response = $api->post('/login', $credentials, self::headers());
         $loginResponse = Login::createFromResponse($response);

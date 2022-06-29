@@ -16,14 +16,14 @@ class CardService
         return Request::defaultHeaders();
     }
 
-    public function tokenize(Request $api, Token $payload)
+    public static function tokenize(Request $api, Token $payload)
     {
         $response = $api->post('/card', $payload, self::headers());
 
         return CardResponse::createFromResponse($response);
     }
 
-    public function vault(Request $api, Vault $payload)
+    public static function vault(Request $api, Vault $payload)
     {
         $response = $api->post("/vault", $payload, self::headers());
 
