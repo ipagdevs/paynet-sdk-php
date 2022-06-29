@@ -22,18 +22,23 @@ class TransactionTest extends TestCase
         return Seller::fromValues('000001', 'VALID SOFTDESC', 2012);
     }
 
-    public function initializeToken(): Token
+    public function initializeCard(): Card
     {
-        $token = Token::fromValues(
+        return Card::fromValues(
             'FLAVIO AUGUSTUS',
             'FLAVIO AUGUSTUS',
             '5454545454545454',
             '03',
-            '25'
+            '25',
+            '123',
+            Card::MASTERCARD
         );
+    }
+
+    public function initializeToken(): Token
+    {
+        $token = new Token($this->initializeCard());
         $token->setToken('6b7238df-2346-493b-8ee8-e2f43efb8c4c');
-        $token->setSecurityCode('123');
-        $token->setBrand(Token::MASTERCARD);
 
         return $token;
     }

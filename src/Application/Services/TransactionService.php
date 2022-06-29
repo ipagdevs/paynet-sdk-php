@@ -1,37 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paynet\Application;
 
 use Paynet\Domain\Response;
 use Paynet\Domain\Operation;
 use Paynet\Domain\Transaction;
+use Paynet\Application\Http\Request;
 
-class TransactionService extends PaynetService
+class TransactionService
 {
-    public function authorize(Transaction $payload)
+    public static function headers()
     {
-        $response = $this->request('/financial', 'POST', $payload);
+        return Request::defaultHeaders();
+    }
+
+    public function authorize(Request $api, Transaction $payload)
+    {
+        $response = $api->post('/financial', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function capture(Operation $payload)
+    public function capture(Request $api, Operation $payload)
     {
-        $response = $this->request("/capture", 'POST', $payload);
+        $response = $api->post('/capture', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function cancel(Operation $payload)
+    public function cancel(Request $api, Operation $payload)
     {
-        $response = $this->request("/cancel", 'POST', $payload);
+        $response = $api->post('/cancel', $payload, self::headers());
 
         return Response::createFromResponse($response);
     }
 
-    public function consult(string $orderNumber)
+    public function consult(Request $api, string $orderNumber)
     {
-        $response = $this->request("/getTransaction", 'POST', ['orderNumber' => $orderNumber]);
+        $response = $api->post('/getTransaction', ['orderNumber' => $orderNumber], self::headers());
 
         return Response::createFromResponse($response);
     }

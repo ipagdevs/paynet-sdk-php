@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paynet\Domain;
 
-use GuzzleHttp\Psr7\Response as PsrResponse;
+use Psr\Http\Message\ResponseInterface;
 
 class CardResponse implements \JsonSerializable
 {
@@ -26,7 +26,7 @@ class CardResponse implements \JsonSerializable
         $this->type = $type;
     }
 
-    public static function createFromResponse(PsrResponse $response): self
+    public static function createFromResponse(ResponseInterface $response): self
     {
         $content = $response->getBody()->getContents();
         $payload = json_decode($content, true);

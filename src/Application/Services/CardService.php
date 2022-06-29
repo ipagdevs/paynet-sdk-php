@@ -1,23 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Paynet\Application;
 
 use Paynet\Domain\Card\Token;
 use Paynet\Domain\Card\Vault;
 use Paynet\Domain\CardResponse;
+use Paynet\Application\Http\Request;
 
-class CardService extends PaynetService
+class CardService
 {
-    public function tokenize(Token $payload)
+    public static function headers()
     {
-        $response = $this->request('/card', 'POST', $payload);
+        return Request::defaultHeaders();
+    }
+
+    public function tokenize(Request $api, Token $payload)
+    {
+        $response = $api->post('/card', $payload, self::headers());
 
         return CardResponse::createFromResponse($response);
     }
 
-    public function vault(Vault $payload)
+    public function vault(Request $api, Vault $payload)
     {
-        $response = $this->request("/vault", 'POST', $payload);
+        $response = $api->post("/vault", $payload, self::headers());
 
         return CardResponse::createFromResponse($response);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paynet\Domain;
 
-use Paynet\Domain\Card\Card;
+use Paynet\Domain\Card\CardInterface;
 use Paynet\Domain\Seller\Seller;
 use Paynet\Domain\Payment\Payment;
 use Paynet\Domain\Customer\Customer;
@@ -12,12 +12,12 @@ use Paynet\Domain\Customer\Customer;
 class Transaction implements \JsonSerializable
 {
     private Payment $payment;
-    private Card $cardInfo;
+    private CardInterface $cardInfo;
     private Seller $sellerInfo;
     private Customer $customer;
     private bool $transactionSimple;
 
-    public function __construct(Payment $payment, Card $cardInfo, Seller $sellerInfo, Customer $customer, $transactionSimple = false)
+    public function __construct(Payment $payment, CardInterface $cardInfo, Seller $sellerInfo, Customer $customer, $transactionSimple = false)
     {
         $this->payment = $payment;
         $this->cardInfo = $cardInfo;

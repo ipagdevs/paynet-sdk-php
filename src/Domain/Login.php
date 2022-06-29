@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paynet\Domain;
 
-use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
 
 class Login
 {
@@ -33,7 +33,7 @@ class Login
         );
     }
 
-    public static function createFromResponse(Response $response)
+    public static function createFromResponse(ResponseInterface $response)
     {
         $content = $response->getBody()->getContents();
         $payload = json_decode($content, true);

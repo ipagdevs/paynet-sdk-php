@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Paynet\Domain\Card;
 
-abstract class Card implements CardInterface
+class Card
 {
     const MASTERCARD = 1;
     const VISA = 3;
@@ -12,16 +12,50 @@ abstract class Card implements CardInterface
     const HIPERCARD = 7;
     const AMEX = 9;
 
-    private CardInterface $card;
+    private HolderName $holder;
+    private CardNumber $number;
+    private string $expiryMonth;
+    private string $expiryYear;
+    private HolderName $customerName;
+    private string $securityCode;
+    private int $brand;
 
-    public function jsonSerialize(): array
-    {
-        return $this->card->jsonSerialize();
+    public function __construct(
+        string $holder,
+        string $customerName,
+        string $number,
+        string $expiryMonth,
+        string $expiryYear,
+        string $securityCode,
+        int $brand
+    ) {
+        $this->holder = HolderName::fromString($holder);
+        $this->customerName = HolderName::fromString($customerName);
+        $this->number = CardNumber::fromString($number);
+
+        $this->ensureIsValidExpiryMonth($expiryMonth);
+        $this->expiryMonth = sprintf("%02d", $expiryMonth);
+
+        $this->ensureIsValidExpiryYear($expiryYear);
+        $this->expiryYear = sprintf("%02d", $expiryYear);
+
+        $this->ensureIsValidBrand($brand);
+        $this->brand = $brand;
+
+        //$this->ensureIsValidSecurityCode($securityCode);
+        $this->securityCode = $securityCode;
     }
 
-    public function token(): array
-    {
-        return $this->card->token();
+    public static function fromValues(
+        string $holder,
+        string $customerName,
+        string $number,
+        string $expiryMonth,
+        string $expiryYear,
+        string $securityCode,
+        int $brand
+    ): self {
+        return new self($holder, $customerName, $number, $expiryMonth, $expiryYear, $securityCode, $brand);
     }
 
     protected function ensureIsValidExpiryMonth(string $month): void
@@ -56,5 +90,47 @@ abstract class Card implements CardInterface
         if (!in_array($brand, $brands)) {
             throw new \UnexpectedValueException(sprintf('%d is not valid brand', $brand));
         }
+    }
+
+    protected function ensureIsValidSecurityCode(string $securityCode): void
+    {
+        if (!preg_match("/^(\d{3-4})$/", $securityCode)) {
+            throw new \UnexpectedValueException(sprintf('%s is not a valid security code', $securityCode));
+        }
+    }
+
+    public function holder(): HolderName
+    {
+        return $this->holder;
+    }
+
+    public function customerName(): HolderName
+    {
+        return $this->customerName;
+    }
+
+    public function number(): CardNumber
+    {
+        return $this->number;
+    }
+
+    public function expiryMonth(): string
+    {
+        return $this->expiryMonth;
+    }
+
+    public function expiryYear(): string
+    {
+        return $this->expiryYear;
+    }
+
+    public function securityCode(): string
+    {
+        return $this->securityCode;
+    }
+
+    public function brand(): int
+    {
+        return $this->brand;
     }
 }
