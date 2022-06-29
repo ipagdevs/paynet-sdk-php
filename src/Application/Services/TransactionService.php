@@ -1,4 +1,5 @@
 <?php
+
 namespace Paynet\Application;
 
 use Paynet\Domain\Response;
@@ -13,7 +14,7 @@ class TransactionService extends PaynetService
 
         return Response::createFromResponse($response);
     }
-    
+
     public function capture(Operation $payload)
     {
         $response = $this->request("/capture", 'POST', $payload);

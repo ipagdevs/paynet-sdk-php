@@ -22,8 +22,8 @@ class SellerTest extends TestCase
             'softDescriptor' => 'VALID*SOFTDESC',
             'dynamicMcc' => 2012,
         ], Seller::fromValues(
-            '000001', 
-            'VALID SOFTDESC', 
+            '000001',
+            'VALID SOFTDESC',
             2012
         )->jsonSerialize());
     }

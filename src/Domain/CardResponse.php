@@ -12,7 +12,7 @@ class CardResponse implements \JsonSerializable
     const TOKEN = 'token';
 
     private string $token;
-    
+
     private string $type;
 
     /**
@@ -20,7 +20,8 @@ class CardResponse implements \JsonSerializable
      *
      * @return self
      */
-    public function __construct($token, $type) {
+    public function __construct($token, $type)
+    {
         $this->token = $token;
         $this->type = $type;
     }

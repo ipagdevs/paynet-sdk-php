@@ -26,16 +26,16 @@ class Payment implements \JsonSerializable
     {
         $this->documentNumber = DocumentNumber::fromString($documentNumber);
         $this->transactionType = self::TRANSACTION_TYPE;
-        
+
         $this->ensureIsValidAmount($amount);
         $this->amount = (int) number_format($amount * 100, 0, '', '');
-        
+
         $this->ensureIsValidInstallment($installments);
         $this->installments = $installments;
-        
+
         $this->ensureIsValidCaptureType($captureType);
         $this->captureType = $captureType;
-        
+
         $this->currencyCode = self::CURRENCY_BRL;
         $this->recurrent = $recurrent;
         $this->productType = $installments > 1 ? self::PARCELADO : self::A_VISTA;
@@ -44,10 +44,10 @@ class Payment implements \JsonSerializable
     public static function fromValues(string $documentNumber, float $amount, int $installments, int $captureType, bool $recurrent = false): self
     {
         return new self(
-            $documentNumber, 
-            $amount, 
-            $installments, 
-            $captureType, 
+            $documentNumber,
+            $amount,
+            $installments,
+            $captureType,
             $recurrent
         );
     }

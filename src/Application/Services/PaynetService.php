@@ -1,4 +1,5 @@
 <?php
+
 namespace Paynet\Application;
 
 use GuzzleHttp\Client;
@@ -27,7 +28,7 @@ class PaynetService
         $this->password = $password;
         $this->environment = $isSandbox ? self::SANDBOX : self::PRODUCTION;
         $this->client = new Client([
-            'base_uri' => $this->environment, 
+            'base_uri' => $this->environment,
         ]);
     }
 
@@ -35,7 +36,7 @@ class PaynetService
     {
         $url = '/login';
         $response = $this->request($url, 'AUTH');
-        
+
         $tokenResponse = Token::createFromResponse($response);
         $this->token = $tokenResponse->getApiKey();
 
@@ -50,7 +51,7 @@ class PaynetService
         ];
     }
 
-    protected function request($url, $type, $json = ''):Response
+    protected function request($url, $type, $json = ''): Response
     {
         try {
             switch ($type) {

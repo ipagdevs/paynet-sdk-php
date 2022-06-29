@@ -27,10 +27,10 @@ class PaymentTest extends TestCase
             'captureType' => Payment::AUTH_AND_CAPTURE,
             'recurrent' => false,
         ], Payment::fromValues(
-            '21234879611', 
-            1.23, 
+            '21234879611',
+            1.23,
             1,
-            Payment::AUTH_AND_CAPTURE, 
+            Payment::AUTH_AND_CAPTURE,
             false
         )->jsonSerialize());
     }

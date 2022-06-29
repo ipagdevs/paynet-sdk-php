@@ -13,7 +13,7 @@ class DocumentNumber
         $documentNumber = preg_replace('/\D/', '', $documentNumber);
 
         $this->guardAgainstFromInvalidDocumentNumber($documentNumber);
- 
+
         $this->documentNumber = $documentNumber;
     }
 

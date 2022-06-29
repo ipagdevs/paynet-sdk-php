@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+use Paynet\Domain\Card\Card;
+use Paynet\Domain\Card\Token;
 use Paynet\Domain\Transaction;
 use PHPUnit\Framework\TestCase;
 use Paynet\Domain\Seller\Seller;
 use Paynet\Domain\Payment\Payment;
-use Paynet\Domain\CardInfo\CardInfo;
 use Paynet\Domain\Customer\Customer;
 
 class TransactionTest extends TestCase
@@ -21,16 +22,20 @@ class TransactionTest extends TestCase
         return Seller::fromValues('000001', 'VALID SOFTDESC', 2012);
     }
 
-    public function initializeCardInfo(): CardInfo
+    public function initializeToken(): Token
     {
-        return CardInfo::fromValues(
-            'FLAVIO AUGUSTUS', 
-            '6b7238df-2346-493b-8ee8-e2f43efb8c4c', 
-            '123',
-            CardInfo::MASTERCARD, 
-            '03', 
+        $token = Token::fromValues(
+            'FLAVIO AUGUSTUS',
+            'FLAVIO AUGUSTUS',
+            '5454545454545454',
+            '03',
             '25'
         );
+        $token->setToken('6b7238df-2346-493b-8ee8-e2f43efb8c4c');
+        $token->setSecurityCode('123');
+        $token->setBrand(Token::MASTERCARD);
+
+        return $token;
     }
 
     public function initializePayment(): Payment
@@ -53,12 +58,12 @@ class TransactionTest extends TestCase
         $customer = $this->initializeCustomer();
         $this->populateCustomer($customer);
         $seller = $this->initializeSeller();
-        $cardInfo = $this->initializeCardInfo();
+        $cardInfo = $this->initializeToken();
         $payment = $this->initializePayment();
 
         $this->assertInstanceOf(
             Transaction::class,
-            Transaction::fromValues(
+            new Transaction(
                 $payment,
                 $cardInfo,
                 $seller,
@@ -72,9 +77,9 @@ class TransactionTest extends TestCase
         $customer = $this->initializeCustomer();
         $this->populateCustomer($customer);
         $seller = $this->initializeSeller();
-        $cardInfo = $this->initializeCardInfo();
+        $cardInfo = $this->initializeToken();
         $payment = $this->initializePayment();
-        $transaction = Transaction::fromValues(
+        $transaction = new Transaction(
             $payment,
             $cardInfo,
             $seller,
@@ -99,10 +104,10 @@ class TransactionTest extends TestCase
                     'zipCode' => '19060-560',
                 ],
                 'cardInfo' => [
-                    'cardholderName' => 'FLAVIO AUGUSTUS',
                     'numberToken' => '6b7238df-2346-493b-8ee8-e2f43efb8c4c',
+                    'cardholderName' => 'FLAVIO AUGUSTUS',
                     'securityCode' => '123',
-                    'brand' => CardInfo::MASTERCARD,
+                    'brand' => Card::MASTERCARD,
                     'expirationMonth' => '03',
                     'expirationYear' => '25',
                 ],
@@ -131,12 +136,12 @@ class TransactionTest extends TestCase
     {
         $customer = $this->initializeCustomer();
         $seller = $this->initializeSeller();
-        $cardInfo = $this->initializeCardInfo();
+        $cardInfo = $this->initializeToken();
         $payment = $this->initializePayment();
 
         $this->assertInstanceOf(
             Transaction::class,
-            Transaction::fromValues(
+            new Transaction(
                 $payment,
                 $cardInfo,
                 $seller,
@@ -149,9 +154,9 @@ class TransactionTest extends TestCase
     {
         $customer = $this->initializeCustomer();
         $seller = $this->initializeSeller();
-        $cardInfo = $this->initializeCardInfo();
+        $cardInfo = $this->initializeToken();
         $payment = $this->initializePayment();
-        $transaction = Transaction::fromValues(
+        $transaction = new Transaction(
             $payment,
             $cardInfo,
             $seller,
@@ -171,10 +176,10 @@ class TransactionTest extends TestCase
                     'country' => 'BRA',
                 ],
                 'cardInfo' => [
-                    'cardholderName' => 'FLAVIO AUGUSTUS',
                     'numberToken' => '6b7238df-2346-493b-8ee8-e2f43efb8c4c',
+                    'cardholderName' => 'FLAVIO AUGUSTUS',
                     'securityCode' => '123',
-                    'brand' => CardInfo::MASTERCARD,
+                    'brand' => Card::MASTERCARD,
                     'expirationMonth' => '03',
                     'expirationYear' => '25',
                 ],
