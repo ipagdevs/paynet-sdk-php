@@ -24,7 +24,7 @@ class Request
         $this->environment = $environment;
         $this->credentials = $credentials;
         $this->client = new Client([
-            'base_uri' => $this->environment->getEndpoint(),
+            'base_uri' => (string) $this->environment,
         ]);
     }
 

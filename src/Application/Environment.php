@@ -19,7 +19,17 @@ class Environment
         $this->endpoint = self::PRODUCTION;
     }
 
-    public function getEndpoint()
+    public static function sandbox()
+    {
+        return new self(true);
+    }
+
+    public static function production()
+    {
+        return new self();
+    }
+
+    public function __toString()
     {
         return $this->endpoint;
     }
