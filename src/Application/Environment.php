@@ -13,10 +13,7 @@ class Environment
 
     public function __construct($isSandbox = false)
     {
-        if ($isSandbox) {
-            $this->endpoint = self::SANDBOX;
-        }
-        $this->endpoint = self::PRODUCTION;
+        $this->endpoint = ($isSandbox) ? self::SANDBOX : self::PRODUCTION;
     }
 
     public static function sandbox()

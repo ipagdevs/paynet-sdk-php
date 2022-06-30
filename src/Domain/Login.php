@@ -40,6 +40,10 @@ class Login
         $content = $response->getBody()->getContents();
         $payload = json_decode($content, true);
 
+        if (!is_array($payload)) {
+            throw new \UnexpectedValueException('Error!');
+        }
+
         $instance = self::fromArray($payload);
         $instance->setResponse($response);
 

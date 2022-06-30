@@ -41,13 +41,16 @@ class Request
         $this->credentials->setApiKey($apiKey);
     }
 
+    public function apiKey(): string
+    {
+        return $this->credentials->apiKey();
+    }
+
     public function post($url, $body, $headers): ResponseInterface
     {
         try {
             return $this->client->post($url, [
-                'headers' => array_merge([
-                    'Authorization' => sprintf("%s", $this->credentials->apiKey()),
-                ], $headers),
+                'headers' => $headers,
                 'json' => $body
             ]);
         } catch (BadResponseException $e) {
