@@ -36,6 +36,11 @@ class Request
         ];
     }
 
+    public function setApiKey(string $apiKey): void
+    {
+        $this->credentials->setApiKey($apiKey);
+    }
+
     public function post($url, $body, $headers): ResponseInterface
     {
         try {
