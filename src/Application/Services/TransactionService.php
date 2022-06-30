@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Paynet\Application;
+namespace Paynet\Application\Services;
 
 use Paynet\Domain\Response;
 use Paynet\Domain\Operation;

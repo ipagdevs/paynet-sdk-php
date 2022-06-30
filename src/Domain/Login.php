@@ -30,7 +30,7 @@ class Login
     public static function fromArray(array $payload)
     {
         return new self(
-            $payload['api_key'],
+            $payload['api_key'] ?? '',
             $payload['status'],
         );
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Paynet\Services;
+namespace Paynet\Application\Services;
 
 use Paynet\Application\Credentials;
 use Paynet\Domain\Login;
@@ -17,7 +17,7 @@ class LoginService
         ];
     }
 
-    public static function login(Request $api, Credentials $credentials)
+    public static function login(Request $api, Credentials $credentials): Login
     {
         $response = $api->post('/login', $credentials, self::headers());
         $loginResponse = Login::createFromResponse($response);

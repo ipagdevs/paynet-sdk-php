@@ -33,8 +33,8 @@ class CardResponse implements \JsonSerializable
         $content = $response->getBody()->getContents();
         $payload = json_decode($content, true);
 
-        if (array_key_exists('vaultId', $payload)) {
-            $token = $payload['vaultId'];
+        if (array_key_exists('data', $payload)) {
+            $token = $payload['data']['vaultId'];
             $type = self::VAULT;
         }
 

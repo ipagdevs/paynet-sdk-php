@@ -20,15 +20,10 @@ class Response implements \JsonSerializable
 
     private string $nsu;
 
-    private string $amount;
+    private int $amount;
 
     private string $releaseAt;
 
-    /**
-     * @param array $payload
-     *
-     * @return self
-     */
     public function __construct(
         string $description,
         string $returnCode,
@@ -36,17 +31,17 @@ class Response implements \JsonSerializable
         string $orderNumber,
         string $authorizationCode,
         string $nsu,
-        string $amount,
+        int $amount,
         string $releaseAt
     ) {
-        $this->$description = $description;
-        $this->$returnCode = $returnCode;
-        $this->$paymentId = $paymentId;
-        $this->$orderNumber = $orderNumber;
-        $this->$authorizationCode = $authorizationCode;
-        $this->$nsu = $nsu;
-        $this->$amount = $amount;
-        $this->$releaseAt = $releaseAt;
+        $this->description = $description;
+        $this->returnCode = $returnCode;
+        $this->paymentId = $paymentId;
+        $this->orderNumber = $orderNumber;
+        $this->authorizationCode = $authorizationCode;
+        $this->nsu = $nsu;
+        $this->amount = $amount;
+        $this->releaseAt = $releaseAt;
     }
 
     public static function fromArray(array $payload): self
@@ -80,7 +75,7 @@ class Response implements \JsonSerializable
             'orderNumber' => (string) $this->orderNumber,
             'authorizationCode' => (string) $this->authorizationCode,
             'nsu' => (string) $this->nsu,
-            'amount' => (string) $this->amount,
+            'amount' => $this->amount,
             'releaseAt' => (string) $this->releaseAt,
         ];
     }

@@ -86,7 +86,7 @@ class Operation implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            "documentNumber" => $this->documentNumber,
+            "documentNumber" => (string) $this->documentNumber,
             "paymentId" => $this->paymentId,
             "amount" => $this->amount,
         ];
