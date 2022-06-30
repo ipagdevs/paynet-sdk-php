@@ -14,6 +14,8 @@ class Login
 
     private string $apiKey;
 
+    private ResponseInterface $response;
+
     /**
      * @param array $payload
      *
@@ -33,31 +35,44 @@ class Login
         );
     }
 
-    public static function createFromResponse(ResponseInterface $response)
+    public static function createFromResponse(ResponseInterface $response): self
     {
         $content = $response->getBody()->getContents();
         $payload = json_decode($content, true);
 
-        return self::fromArray($payload);
+        $instance = self::fromArray($payload);
+        $instance->setResponse($response);
+
+        return $instance;
     }
 
-    public function getStatus()
+    protected function setResponse(ResponseInterface $response): void
+    {
+        $this->response = $response;
+    }
+
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function getApiKey()
+    public function getApiKey(): string
     {
         return $this->apiKey;
     }
 
-    public function isValidLogin()
+    public function isValidLogin(): bool
     {
         return $this->status == self::SUCCESS;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->apiKey;
+    }
+
+    public function response(): ResponseInterface
+    {
+        return $this->response;
     }
 }

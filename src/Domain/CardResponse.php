@@ -15,6 +15,8 @@ class CardResponse implements \JsonSerializable
 
     private string $type;
 
+    private ResponseInterface $response;
+
     /**
      * @param array $payload
      *
@@ -41,7 +43,15 @@ class CardResponse implements \JsonSerializable
             $type = self::TOKEN;
         }
 
-        return new self($token, $type);
+        $instance = new self($token, $type);
+        $instance->setResponse($response);
+
+        return $instance;
+    }
+
+    protected function setResponse(ResponseInterface $response): void
+    {
+        $this->response = $response;
     }
 
     public function jsonSerialize(): array
@@ -50,5 +60,20 @@ class CardResponse implements \JsonSerializable
             'token' => (string) $this->token,
             'type' => (string) $this->type,
         ];
+    }
+
+    public function response(): ResponseInterface
+    {
+        return $this->response;
+    }
+
+    public function type(): string
+    {
+        return $this->type;
+    }
+
+    public function token(): string
+    {
+        return $this->token;
     }
 }
