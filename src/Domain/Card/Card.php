@@ -42,7 +42,7 @@ class Card
         $this->ensureIsValidBrand($brand);
         $this->brand = $brand;
 
-        //$this->ensureIsValidSecurityCode($securityCode);
+        $this->ensureIsValidSecurityCode($securityCode);
         $this->securityCode = $securityCode;
     }
 
@@ -94,7 +94,7 @@ class Card
 
     protected function ensureIsValidSecurityCode(string $securityCode): void
     {
-        if (!preg_match("/^(\d{3-4})$/", $securityCode)) {
+        if (!preg_match("/^(\d{3,4})$/", $securityCode)) {
             throw new \UnexpectedValueException(sprintf('%s is not a valid security code', $securityCode));
         }
     }

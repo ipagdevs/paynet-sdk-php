@@ -52,4 +52,19 @@ class CardTest extends TestCase
             Card::MASTERCARD
         );
     }
+
+    public function testCannotBeCreateWithInvalidCvv(): void
+    {
+        $this->expectException(\UnexpectedValueException::class);
+
+        Card::fromValues(
+            'FLAVIO AUGUSTUS',
+            'FLAVIO AUGUSTUS',
+            '5454 5454 5454 5454',
+            '05',
+            '25',
+            '12342',
+            Card::MASTERCARD
+        );
+    }
 }
