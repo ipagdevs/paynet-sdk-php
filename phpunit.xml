@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests/Application</directory>
+        </testsuite>
+        <testsuite name="Domain Test Suite">
+            <directory>./tests/Domain/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="LOGIN" value="" />
+        <env name="PASSWORD" value="" />
+    </php>
+</phpunit>
