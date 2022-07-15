@@ -56,13 +56,14 @@ class Customer implements \JsonSerializable
 
     public function jsonSerialize(): array
     {
+        $phone = (string) (isset($this->phone) ? preg_replace('/\D/', '', $this->phone->__toString()) : null);
         $response = [
             'documentType' => (string) $this->identificationDocId->docType(),
             'documentNumberCDH' => (string) $this->identificationDocId->docId(),
             'firstName' => $this->name->firstname(),
             'lastName' => $this->name->lastname(),
             'email' => (string) (isset($this->email) ? $this->email : null),
-            'phoneNumber' => (string) (isset($this->phone) ? $this->phone : null),
+            'phoneNumber' => strlen($phone) == 11 ? $phone : '',
             'ipAddress' => (string) (isset($this->ip) ? $this->ip : null),
             'country' => 'BRA',
         ];

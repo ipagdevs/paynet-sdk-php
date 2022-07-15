@@ -15,7 +15,7 @@ class VaultTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454545454545454',
             '03',
-            '25',
+            '2025',
             '123',
             Card::MASTERCARD
         );
@@ -35,7 +35,7 @@ class VaultTest extends TestCase
             'cardNumber' => '5454545454545454',
             'cardHolder' => 'FLAVIO AUGUSTUS',
             'expirationMonth' => '03',
-            'expirationYear' => '25',
+            'expirationYear' => '2025',
             'brand' => Card::MASTERCARD,
             'validate' => Vault::VALIDATE
         ], (new Vault($this->initializeCard()))->jsonSerialize());

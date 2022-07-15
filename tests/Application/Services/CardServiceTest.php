@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Paynet\Domain\Card\Card;
 use Paynet\Domain\Card\Token;
 use Paynet\Domain\Card\Vault;
+use Paynet\Domain\CardResponse;
 use PHPUnit\Framework\TestCase;
 use Paynet\Application\Credentials;
 use Paynet\Application\Environment;
@@ -33,7 +34,7 @@ class CardServiceTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454 5454 5454 5454',
             '03',
-            '25',
+            '2025',
             '123',
             Card::MASTERCARD
         );

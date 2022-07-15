@@ -16,7 +16,7 @@ class CardTest extends TestCase
                 'FLAVIO AUGUSTUS',
                 '5454 5454 5454 5454',
                 '03',
-                '25',
+                '2025',
                 '123',
                 Card::MASTERCARD
             )
@@ -32,7 +32,7 @@ class CardTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454 5454 5454 5454',
             '45',
-            '25',
+            '2025',
             '123',
             Card::MASTERCARD
         );
@@ -47,7 +47,7 @@ class CardTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454 5454 5454 5454',
             '05',
-            '2025',
+            '25',
             '123',
             Card::MASTERCARD
         );
@@ -62,7 +62,7 @@ class CardTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454 5454 5454 5454',
             '05',
-            '25',
+            '2025',
             '12342',
             Card::MASTERCARD
         );

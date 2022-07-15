@@ -37,7 +37,7 @@ class Card
         $this->expiryMonth = sprintf("%02d", $expiryMonth);
 
         $this->ensureIsValidExpiryYear($expiryYear);
-        $this->expiryYear = sprintf("%02d", $expiryYear);
+        $this->expiryYear = sprintf("%04d", $expiryYear);
 
         $this->ensureIsValidBrand($brand);
         $this->brand = $brand;
@@ -68,8 +68,8 @@ class Card
 
     protected function ensureIsValidExpiryYear(string $year): void
     {
-        if (!preg_match("/^(\d{2})$/", $year)) {
-            throw new \UnexpectedValueException(sprintf('%s is not a valid expiry year format (YY)', $year));
+        if (!preg_match("/^(\d{4})$/", $year)) {
+            throw new \UnexpectedValueException(sprintf('%s is not a valid expiry year format (YYYY)', $year));
         }
 
         if (!is_numeric($year)) {
@@ -122,6 +122,11 @@ class Card
     public function expiryYear(): string
     {
         return $this->expiryYear;
+    }
+
+    public function shortExpiryYear(): string
+    {
+        return substr($this->expiryYear, -2, 2);
     }
 
     public function securityCode(): string

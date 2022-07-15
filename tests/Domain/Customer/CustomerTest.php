@@ -16,7 +16,7 @@ class CustomerTest extends TestCase
     {
         $customer->setEmail('test@mail.com');
         $customer->setIp('127.0.0.1');
-        $customer->setPhone('(11) 2222-3333');
+        $customer->setPhone('(11) 92222-3333');
         $customer->setAddressFromString('Rua do Teste,123,Centro,,Presidente Prudente,SP,19060-560');
 
         return $customer;
@@ -69,7 +69,7 @@ class CustomerTest extends TestCase
             'firstName' => 'FLAVIO',
             'lastName' => 'AUGUSTUS',
             'email' => 'test@mail.com',
-            'phoneNumber' => '(11) 2222-3333',
+            'phoneNumber' => '11922223333',
             'ipAddress' => '127.0.0.1',
             'country' => 'BRA',
             'address' => 'Rua do Teste 123',

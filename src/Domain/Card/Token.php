@@ -21,7 +21,7 @@ class Token implements CardInterface, \JsonSerializable
             'customerName' => (string) $this->card->customerName(),
             'cardNumber' => (string) $this->card->number(),
             'expirationMonth' => $this->card->expiryMonth(),
-            'expirationYear' => $this->card->expiryYear(),
+            'expirationYear' => $this->card->shortExpiryYear(),
         ];
     }
 
@@ -37,7 +37,7 @@ class Token implements CardInterface, \JsonSerializable
             'securityCode' => (string) $this->card->securityCode(),
             'brand' => (int) $this->card->brand(),
             'expirationMonth' => $this->card->expiryMonth(),
-            'expirationYear' => $this->card->expiryYear(),
+            'expirationYear' => $this->card->shortExpiryYear(),
         ];
     }
 

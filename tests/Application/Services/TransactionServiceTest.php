@@ -36,7 +36,7 @@ class TransactionServiceTest extends TestCase
 
     public function initializeSeller(): Seller
     {
-        return Seller::fromValues('000001', 'VALID SOFTDESC', 2012);
+        return Seller::fromValues(date('YmdHis'), 'VALID SOFTDESC', 2012);
     }
 
     public function initializeCard(): Card
@@ -46,7 +46,7 @@ class TransactionServiceTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454545454545454',
             '03',
-            '25',
+            '2025',
             '123',
             Card::MASTERCARD
         );
@@ -62,7 +62,7 @@ class TransactionServiceTest extends TestCase
 
     public function initializePayment(): Payment
     {
-        return Payment::fromValues('21234879611', 1.23, 1, Payment::AUTH_AND_CAPTURE, false);
+        return Payment::fromValues('76600763000135', 1.23, 1, Payment::AUTH_AND_CAPTURE, false);
     }
 
     public function populateCustomer(Customer $customer): Customer

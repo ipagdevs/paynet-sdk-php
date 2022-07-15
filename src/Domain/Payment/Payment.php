@@ -13,12 +13,12 @@ class Payment implements \JsonSerializable
     const PARCELADO = 4;
     const AUTH_AND_CAPTURE = 1;
     const PRE_AUTH = 2;
-    const CURRENCY_BRL = 986;
+    const CURRENCY_BRL = "brl";
 
     private DocumentNumber $documentNumber;
     private int $transactionType;
     private int $amount;
-    private int $currencyCode;
+    private string $currencyCode;
     private int $installments;
     private bool $recurrent;
 

@@ -15,7 +15,7 @@ class TokenTest extends TestCase
             'FLAVIO AUGUSTUS',
             '5454545454545454',
             '03',
-            '25',
+            '2025',
             '123',
             Card::MASTERCARD
         );

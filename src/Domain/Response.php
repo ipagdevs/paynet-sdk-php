@@ -64,7 +64,10 @@ class Response implements \JsonSerializable
         $payload = json_decode($content, true);
 
         if (!is_array($payload)) {
-            throw new \UnexpectedValueException('Error!');
+            throw new \Exception('Error!');
+        }
+        if ($response->getStatusCode() >= 400) {
+            throw new \UnexpectedValueException($payload['errors']['0']['description']);
         }
         return self::fromArray($payload);
     }
