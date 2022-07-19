@@ -24,6 +24,10 @@ class Response implements \JsonSerializable
 
     private string $releaseAt;
 
+    private int $status;
+
+    private string $date;
+
     public function __construct(
         string $description,
         string $returnCode,
@@ -32,7 +36,9 @@ class Response implements \JsonSerializable
         string $authorizationCode,
         string $nsu,
         int $amount,
-        string $releaseAt
+        string $releaseAt,
+        int $status,
+        string $date
     ) {
         $this->description = $description;
         $this->returnCode = $returnCode;
@@ -42,6 +48,8 @@ class Response implements \JsonSerializable
         $this->nsu = $nsu;
         $this->amount = $amount;
         $this->releaseAt = $releaseAt;
+        $this->status = $status;
+        $this->date = $date;
     }
 
     public static function fromArray(array $payload): self
@@ -53,8 +61,10 @@ class Response implements \JsonSerializable
             $payload['orderNumber'] ?? '',
             $payload['authorizationCode'] ?? '',
             $payload['nsu'] ?? '',
-            $payload['amount'] ?? '',
+            $payload['amount'] ?? 0,
             $payload['releaseAt'] ?? '',
+            $payload['status'] ?? 0,
+            $payload['date'] ?? '',
         );
     }
 
@@ -83,6 +93,88 @@ class Response implements \JsonSerializable
             'nsu' => (string) $this->nsu,
             'amount' => $this->amount,
             'releaseAt' => (string) $this->releaseAt,
+            'status' => $this->status,
+            'date' => (string) $this->date,
         ];
+    }
+
+    /**
+     * Get the value of description
+     */
+    public function description()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Get the value of returnCode
+     */
+    public function returnCode()
+    {
+        return $this->returnCode;
+    }
+
+    /**
+     * Get the value of paymentId
+     */
+    public function paymentId()
+    {
+        return $this->paymentId;
+    }
+
+    /**
+     * Get the value of orderNumber
+     */
+    public function orderNumber()
+    {
+        return $this->orderNumber;
+    }
+
+    /**
+     * Get the value of authorizationCode
+     */
+    public function authorizationCode()
+    {
+        return $this->authorizationCode;
+    }
+
+    /**
+     * Get the value of nsu
+     */
+    public function nsu()
+    {
+        return $this->nsu;
+    }
+
+    /**
+     * Get the value of amount
+     */
+    public function amount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Get the value of releaseAt
+     */
+    public function releaseAt()
+    {
+        return $this->releaseAt;
+    }
+
+    /**
+     * Get the value of status
+     */
+    public function status()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Get the value of date
+     */
+    public function date()
+    {
+        return $this->date;
     }
 }

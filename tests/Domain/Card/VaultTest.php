@@ -46,7 +46,8 @@ class VaultTest extends TestCase
         $vault = new Vault($this->initializeCard());
         $vault->setToken('4efb692fc1e860542850d83378ac51bb19ea6929804339acae2c4d58d01a6171');
         $this->assertSame([
-            'vaultId' => '4efb692fc1e860542850d83378ac51bb19ea6929804339acae2c4d58d01a6171'
+            'vaultId' => '4efb692fc1e860542850d83378ac51bb19ea6929804339acae2c4d58d01a6171',
+            'securityCode' => '123'
         ], $vault->token());
     }
 }

@@ -33,7 +33,9 @@ class ResponseTest extends TestCase
             "authorizationCode" => "709685",
             "nsu" => "000000876313",
             "amount" => 1,
-            "releaseAt" => ''
+            "releaseAt" => '',
+            "status" => 0,
+            "date" => '',
         ], Response::fromArray([
             "description" => "Sucesso",
             "returnCode" => "00",
