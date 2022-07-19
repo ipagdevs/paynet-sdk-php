@@ -10,7 +10,14 @@ class Card
     const VISA = 3;
     const ELO = 5;
     const HIPERCARD = 7;
-    const AMEX = 9;
+    const AMEX = 8;
+    const JCB = 11;
+    const DISCOVER = 14;
+    const AURA = 15;
+
+    const MAESTRO = 2;
+    const VISA_ELECTRON = 4;
+    const ELO_DEBITO = 6;
 
     private HolderName $holder;
     private CardNumber $number;

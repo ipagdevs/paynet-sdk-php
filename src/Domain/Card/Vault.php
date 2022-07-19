@@ -38,10 +38,15 @@ class Vault implements CardInterface, \JsonSerializable
         if (!isset($this->token)) {
             throw new \LogicException('Token is not set');
         }
-
-        return [
+        $token = [
             'vaultId' => (string) $this->token
         ];
+
+        if (!empty($this->card->securityCode())) {
+            $token['securityCode'] = (string) $this->card->securityCode();
+        };
+
+        return $token;
     }
 
     public function setToken(string $token): void

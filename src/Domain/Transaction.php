@@ -11,6 +11,16 @@ use Paynet\Domain\Customer\Customer;
 
 class Transaction implements \JsonSerializable
 {
+    const NOT_FINISHED = 0;
+    const AUTHORIZED = 1;
+    const CAPTURED = 2;
+    const DENIED = 3;
+    const VOIDED = 10;
+    const REFUNDED = 11;
+    const PENDING = 12;
+    const ABORTED = 13;
+    const SCHEDULED = 20;
+
     private Payment $payment;
     private CardInterface $cardInfo;
     private Seller $sellerInfo;
