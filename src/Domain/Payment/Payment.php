@@ -93,7 +93,7 @@ class Payment implements \JsonSerializable
 
     private function ensureIsValidCaptureType(int $captureType): void
     {
-        $validCaptureTypes = [self::AUTH_AND_CAPTURE, self::PARCELADO];
+        $validCaptureTypes = [self::AUTH_AND_CAPTURE, self::PRE_AUTH];
         if (!in_array($captureType, $validCaptureTypes)) {
             throw new \UnexpectedValueException(sprintf('%s is not valid capture type', $captureType));
         }
